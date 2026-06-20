@@ -34,8 +34,8 @@ namespace PomodoroTimer
         private Panel _circlePanel;
 
         private int _progressAngle = 0;
-        private Color _primaryColor = Color.FromArgb(255, 107, 107);
-        private Color _breakColor = Color.FromArgb(72, 219, 251);
+        private Color _primaryColor = Color.FromArgb(214, 69, 69);
+        private Color _breakColor = Color.FromArgb(46, 168, 184);
         private Image _backgroundImage;
 
         public MainForm()
@@ -70,7 +70,7 @@ namespace PomodoroTimer
                 e.Graphics.DrawImage(_backgroundImage, 0, 0, this.Width, this.Height);
 
                 // 半透明暗色遮罩，提高文字可读性
-                using (var brush = new SolidBrush(Color.FromArgb(160, 20, 20, 22)))
+                using (var brush = new SolidBrush(Color.FromArgb(180, 12, 12, 16)))
                 {
                     e.Graphics.FillRectangle(brush, 0, 0, this.Width, this.Height);
                 }
@@ -78,7 +78,7 @@ namespace PomodoroTimer
             else
             {
                 // 无背景图时用纯色背景
-                using (var brush = new SolidBrush(Color.FromArgb(44, 44, 46)))
+                using (var brush = new SolidBrush(Color.FromArgb(26, 26, 30)))
                 {
                     e.Graphics.FillRectangle(brush, 0, 0, this.Width, this.Height);
                 }
@@ -92,7 +92,7 @@ namespace PomodoroTimer
             this.StartPosition = FormStartPosition.CenterScreen;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
-            this.BackColor = Color.FromArgb(44, 44, 46);
+            this.BackColor = Color.FromArgb(26, 26, 30);
             this.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
 
             _timer = new Timer();
@@ -131,7 +131,7 @@ namespace PomodoroTimer
             _lblStatus = new Label();
             _lblStatus.Text = "准备好了，开始专注吧 💪";
             _lblStatus.Font = new Font("Segoe UI", 11F, FontStyle.Regular);
-            _lblStatus.ForeColor = Color.FromArgb(170, 170, 170);
+            _lblStatus.ForeColor = Color.FromArgb(150, 150, 155);
             _lblStatus.TextAlign = ContentAlignment.MiddleCenter;
             _lblStatus.Size = new Size(260, 30);
             _lblStatus.Location = new Point(0, 155);
@@ -142,22 +142,22 @@ namespace PomodoroTimer
             _lblPomodoroCount = new Label();
             _lblPomodoroCount.Text = "今日已完成番茄：0 个 🍅";
             _lblPomodoroCount.Font = new Font("Segoe UI", 10F, FontStyle.Regular);
-            _lblPomodoroCount.ForeColor = Color.FromArgb(200, 200, 200);
+            _lblPomodoroCount.ForeColor = Color.FromArgb(180, 180, 185);
             _lblPomodoroCount.TextAlign = ContentAlignment.MiddleCenter;
             _lblPomodoroCount.Size = new Size(400, 25);
             _lblPomodoroCount.Location = new Point(10, 335);
             _lblPomodoroCount.BackColor = Color.Transparent;
 
             // 按钮：开始/暂停
-            _btnStartPause = CreateButton("▶ 开始", 85, 370, 160, 40, Color.FromArgb(255, 107, 107));
+            _btnStartPause = CreateButton("▶ 开始", 85, 370, 160, 40, Color.FromArgb(214, 69, 69));
             _btnStartPause.Click += BtnStartPause_Click;
 
             // 按钮：重置
-            _btnReset = CreateButton("⟳ 重置", 255, 370, 80, 40, Color.FromArgb(100, 100, 100));
+            _btnReset = CreateButton("⟳ 重置", 255, 370, 80, 40, Color.FromArgb(85, 85, 88));
             _btnReset.Click += BtnReset_Click;
 
             // 按钮：设置
-            _btnSettings = CreateButton("⚙", 350, 370, 40, 40, Color.FromArgb(80, 80, 80));
+            _btnSettings = CreateButton("⚙", 350, 370, 40, 40, Color.FromArgb(65, 65, 68));
             _btnSettings.Font = new Font("Segoe UI", 14F, FontStyle.Regular);
             _btnSettings.Click += BtnSettings_Click;
 
@@ -165,7 +165,7 @@ namespace PomodoroTimer
             _settingsPanel = new Panel();
             _settingsPanel.Size = new Size(380, 80);
             _settingsPanel.Location = new Point(20, 420);
-            _settingsPanel.BackColor = Color.FromArgb(58, 58, 60);
+            _settingsPanel.BackColor = Color.FromArgb(36, 36, 40);
             _settingsPanel.Visible = false;
 
             var lblWork = new Label();
@@ -181,20 +181,20 @@ namespace PomodoroTimer
             _numWork.Minimum = 1;
             _numWork.Maximum = 120;
             _numWork.Value = 25;
-            _numWork.BackColor = Color.FromArgb(70, 70, 72);
-            _numWork.ForeColor = Color.White;
+            _numWork.BackColor = Color.FromArgb(50, 50, 54);
+            _numWork.ForeColor = Color.FromArgb(220, 220, 220);
             _numWork.BorderStyle = BorderStyle.FixedSingle;
 
             var lblWorkMin = new Label();
             lblWorkMin.Text = "分钟";
-            lblWorkMin.ForeColor = Color.Gray;
+            lblWorkMin.ForeColor = Color.FromArgb(130, 130, 135);
             lblWorkMin.Font = new Font("Segoe UI", 9F);
             lblWorkMin.Location = new Point(155, 17);
             lblWorkMin.Size = new Size(40, 20);
 
             var lblBreak = new Label();
             lblBreak.Text = "休息时长：";
-            lblBreak.ForeColor = Color.White;
+            lblBreak.ForeColor = Color.FromArgb(200, 200, 205);
             lblBreak.Font = new Font("Segoe UI", 9F);
             lblBreak.Location = new Point(15, 45);
             lblBreak.Size = new Size(80, 25);
@@ -205,13 +205,13 @@ namespace PomodoroTimer
             _numBreak.Minimum = 1;
             _numBreak.Maximum = 60;
             _numBreak.Value = 5;
-            _numBreak.BackColor = Color.FromArgb(70, 70, 72);
-            _numBreak.ForeColor = Color.White;
+            _numBreak.BackColor = Color.FromArgb(50, 50, 54);
+            _numBreak.ForeColor = Color.FromArgb(220, 220, 220);
             _numBreak.BorderStyle = BorderStyle.FixedSingle;
 
             var lblBreakMin = new Label();
             lblBreakMin.Text = "分钟";
-            lblBreakMin.ForeColor = Color.Gray;
+            lblBreakMin.ForeColor = Color.FromArgb(130, 130, 135);
             lblBreakMin.Font = new Font("Segoe UI", 9F);
             lblBreakMin.Location = new Point(155, 47);
             lblBreakMin.Size = new Size(40, 20);
@@ -219,8 +219,8 @@ namespace PomodoroTimer
             var btnSaveSettings = new Button();
             btnSaveSettings.Text = "保存";
             btnSaveSettings.FlatStyle = FlatStyle.Flat;
-            btnSaveSettings.BackColor = Color.FromArgb(52, 199, 89);
-            btnSaveSettings.ForeColor = Color.White;
+            btnSaveSettings.BackColor = Color.FromArgb(61, 166, 98);
+            btnSaveSettings.ForeColor = Color.FromArgb(230, 230, 230);
             btnSaveSettings.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             btnSaveSettings.Location = new Point(215, 20);
             btnSaveSettings.Size = new Size(70, 40);
@@ -254,13 +254,13 @@ namespace PomodoroTimer
             _txtTask = new TextBox();
             _txtTask.Location = new Point(25, 455);
             _txtTask.Size = new Size(270, 25);
-            _txtTask.BackColor = Color.FromArgb(58, 58, 60);
-            _txtTask.ForeColor = Color.White;
+            _txtTask.BackColor = Color.FromArgb(36, 36, 40);
+            _txtTask.ForeColor = Color.FromArgb(220, 220, 220);
             _txtTask.BorderStyle = BorderStyle.FixedSingle;
             _txtTask.KeyDown += TxtTask_KeyDown;
 
             // 添加任务按钮
-            _btnAddTask = CreateButton("添加", 300, 453, 70, 30, Color.FromArgb(52, 199, 89));
+            _btnAddTask = CreateButton("添加", 300, 453, 70, 30, Color.FromArgb(61, 166, 98));
             _btnAddTask.Font = new Font("Segoe UI", 9F);
             _btnAddTask.Click += BtnAddTask_Click;
 
@@ -268,20 +268,20 @@ namespace PomodoroTimer
             _taskList = new ListBox();
             _taskList.Location = new Point(25, 490);
             _taskList.Size = new Size(345, 95);
-            _taskList.BackColor = Color.FromArgb(58, 58, 60);
-            _taskList.ForeColor = Color.White;
+            _taskList.BackColor = Color.FromArgb(36, 36, 40);
+            _taskList.ForeColor = Color.FromArgb(220, 220, 220);
             _taskList.BorderStyle = BorderStyle.FixedSingle;
             _taskList.Font = new Font("Segoe UI", 10F);
 
             // 删除任务按钮
-            _btnRemoveTask = CreateButton("删除任务", 300, 590, 80, 30, Color.FromArgb(201, 80, 80));
+            _btnRemoveTask = CreateButton("删除任务", 300, 590, 80, 30, Color.FromArgb(180, 65, 65));
             _btnRemoveTask.Font = new Font("Segoe UI", 9F);
             _btnRemoveTask.Click += BtnRemoveTask_Click;
 
             // 底部提示
             var lblFooter = new Label();
             lblFooter.Text = "提示：一个番茄 = 25分钟专注 + 5分钟休息";
-            lblFooter.ForeColor = Color.FromArgb(120, 120, 120);
+            lblFooter.ForeColor = Color.FromArgb(100, 100, 105);
             lblFooter.Font = new Font("Segoe UI", 8F);
             lblFooter.TextAlign = ContentAlignment.MiddleCenter;
             lblFooter.Size = new Size(400, 20);
@@ -335,7 +335,7 @@ namespace PomodoroTimer
             int penWidth = 8;
             int innerSize = size - penWidth * 2;
 
-            using (var pen = new Pen(Color.FromArgb(60, 60, 62), penWidth))
+            using (var pen = new Pen(Color.FromArgb(45, 45, 50), penWidth))
             {
                 e.Graphics.DrawArc(pen, x + penWidth, y + penWidth, innerSize, innerSize, 0, 360);
             }
@@ -409,30 +409,30 @@ namespace PomodoroTimer
                 _state = TimerState.Working;
                 _timeRemaining = _workMinutes * 60;
                 _lblStatus.Text = "🎯 专注工作中...";
-                _primaryColor = Color.FromArgb(255, 107, 107);
+                _primaryColor = Color.FromArgb(214, 69, 69);
                 _timer.Start();
                 _btnStartPause.Text = "⏸ 暂停";
-                _btnStartPause.BackColor = Color.FromArgb(255, 165, 0);
+                _btnStartPause.BackColor = Color.FromArgb(212, 135, 10);
             }
             else if (_state == TimerState.Break)
             {
                 _timer.Start();
                 _btnStartPause.Text = "⏸ 暂停";
-                _btnStartPause.BackColor = Color.FromArgb(255, 165, 0);
+                _btnStartPause.BackColor = Color.FromArgb(212, 135, 10);
             }
             else if (_state == TimerState.Working || _state == TimerState.Break)
             {
                 _state = TimerState.Paused;
                 _timer.Stop();
                 _btnStartPause.Text = "▶ 继续";
-                _btnStartPause.BackColor = Color.FromArgb(255, 107, 107);
+                _btnStartPause.BackColor = Color.FromArgb(214, 69, 69);
             }
             else if (_state == TimerState.Paused)
             {
                 _state = (_lblStatus.Text.Contains("休息")) ? TimerState.Break : TimerState.Working;
                 _timer.Start();
                 _btnStartPause.Text = "⏸ 暂停";
-                _btnStartPause.BackColor = Color.FromArgb(255, 165, 0);
+                _btnStartPause.BackColor = Color.FromArgb(212, 135, 10);
             }
 
             UpdateDisplay();
@@ -448,9 +448,9 @@ namespace PomodoroTimer
         {
             _state = TimerState.Idle;
             _timeRemaining = _workMinutes * 60;
-            _primaryColor = Color.FromArgb(255, 107, 107);
+            _primaryColor = Color.FromArgb(214, 69, 69);
             _btnStartPause.Text = "▶ 开始";
-            _btnStartPause.BackColor = Color.FromArgb(255, 107, 107);
+            _btnStartPause.BackColor = Color.FromArgb(214, 69, 69);
             _lblStatus.Text = "准备好了，开始专注吧 💪";
             UpdateDisplay();
         }
